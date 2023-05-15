@@ -3,13 +3,14 @@ import { RouterLink, RouterView } from 'vue-router'
 import { ref, provide } from 'vue';
 
 const StuffToDo = ref([
+  {  $type: 'todo-v1', $id: 'todo-a1-1', title: "Otestuj ma!",                                                      done: false, },
   {  $type: 'todo-v1', $id: 'todo-a1-1', title: "sprav si novy vue projekt",                                        done: true,  },
-  {  $type: 'todo-v1', $id: 'todo-a1-2', title: "daj si tam input na novu todo polozku",                            done: false, },
-  {  $type: 'todo-v1', $id: 'todo-a1-3', title: "input si hookni na click, aby pridal do zoznamu v data novy item", done: false, },
-  {  $type: 'todo-v1', $id: 'todo-a1-4', title: "zobraz itemy",                                                     done: true, },
-  {  $type: 'todo-v1', $id: 'todo-a1-5', title: "itemom pridaj deleted atribut",                                    done: true, },
-  {  $type: 'todo-v1', $id: 'todo-a1-6', title: "ked je deleted, tak cez v-if sa schova",                           done: true, },
-  {  $type: 'todo-v1', $id: 'todo-a1-7', title: "sprav druhu pagu kde budu zmazane veci",                           done: true, },
+  {  $type: 'todo-v1', $id: 'todo-a1-2', title: "daj si tam input na novu todo polozku",                            done: true,  },
+  {  $type: 'todo-v1', $id: 'todo-a1-3', title: "input si hookni na click, aby pridal do zoznamu v data novy item", done: true,  },
+  {  $type: 'todo-v1', $id: 'todo-a1-4', title: "zobraz itemy",                                                     done: true,  },
+  {  $type: 'todo-v1', $id: 'todo-a1-5', title: "itemom pridaj deleted atribut",                                    done: true,  },
+  {  $type: 'todo-v1', $id: 'todo-a1-6', title: "ked je deleted, tak cez v-if sa schova",                           done: true,  },
+  {  $type: 'todo-v1', $id: 'todo-a1-7', title: "sprav druhu pagu kde budu zmazane veci",                           done: true,  },
 ])
 
 const InputArea = ref(null)
