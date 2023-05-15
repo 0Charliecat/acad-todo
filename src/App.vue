@@ -53,7 +53,7 @@ provide('UpdateToDo', UpdateToDo);
       <span>🔲 {{ StuffToDo.length }} • </span>
     </div>
     <input type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900" placeholder="Your ToDo Title" ref="InputArea">
-    <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
+    <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo" v-on:keyup.enter="CreateToDo">Add</button>
   </div>
 
   <RouterView />
