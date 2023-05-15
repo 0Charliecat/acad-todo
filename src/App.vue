@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { ref, provide } from 'vue';
 
 const StuffToDo = ref([
-  {  $type: 'todo-v1', $id: 'todo-a1-1', title: "Otestuj ma!",                                                      done: false, },
+  {  $type: 'todo-v1', $id: 'todo-a1-0', title: "Otestuj ma!",                                                      done: false, },
   {  $type: 'todo-v1', $id: 'todo-a1-1', title: "sprav si novy vue projekt",                                        done: true,  },
   {  $type: 'todo-v1', $id: 'todo-a1-2', title: "daj si tam input na novu todo polozku",                            done: true,  },
   {  $type: 'todo-v1', $id: 'todo-a1-3', title: "input si hookni na click, aby pridal do zoznamu v data novy item", done: true,  },
@@ -48,6 +48,8 @@ provide('UpdateToDo', UpdateToDo);
         <RouterLink to="/">Stuff To-Do</RouterLink>
         •
         <RouterLink to="/deleted">Stuff Done</RouterLink>
+        •
+        <a href="https://github.com/0Charliecat/acad-todo" class="underline">Github ↗️</a>
       </nav>
     </div>
   </header>
@@ -62,3 +64,18 @@ provide('UpdateToDo', UpdateToDo);
 
   <RouterView />
 </template>
+
+<style>
+.active {
+  color: rgb(6 78 59);
+  font: bold;
+}
+
+.active::before {
+  content: '['
+}
+
+.active::after {
+  content: ']'
+}
+</style>

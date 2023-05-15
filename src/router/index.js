@@ -17,7 +17,8 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/deleted.vue')
     }
-  ]
+  ],
+  linkActiveClass: "active",
 })
 
 export default router
