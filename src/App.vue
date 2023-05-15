@@ -39,7 +39,7 @@ provide('UpdateToDo', UpdateToDo);
     </div>
     <div class="flex-auto text-right">
       <nav>
-        <RouterLink to="/"> Stuff To-Do</RouterLink>
+        <RouterLink to="/">➿ Stuff To-Do</RouterLink>
         •
         <RouterLink to="/deleted">✔ Stuff Done</RouterLink>
         •
