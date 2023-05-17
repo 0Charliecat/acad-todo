@@ -1,14 +1,14 @@
 <script setup>
 import { inject } from 'vue';
+import { data } from '../datasharing'
 
-const ToDos = inject('ToDos');
 const UpdateToDo = inject('UpdateToDo');
 </script>
 
 <template>
     <div>
         <ul>
-            <li v-for="todo in ToDos.filter(e=>!e.done)" @click="UpdateToDo(todo.$id, 'flip', '', $event)" :key="todo.$id"> <code>[]</code> {{ todo.title }}</li>
+            <li v-for="todo in data.filter(e=>!e.done)" @click="UpdateToDo(todo.$id, 'flip', '', $event)" :key="todo.$id"> <code>[ ]</code> {{ todo.title }}</li>
         </ul>
     </div>
 </template>

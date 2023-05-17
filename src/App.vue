@@ -1,10 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { ref, provide } from 'vue';
-
-const StuffToDo = ref([
-  {  $type: 'todo-v1', $id: 'todo-a1-0', title: "Otestuj ma!",                                                      done: false, },
-  ])
+import { data } from './datasharing'
 
 const InputArea = ref(null)
 
@@ -12,7 +9,7 @@ function UpdateToDo(id, method, attr, $event) {
   console.log(`UpdateToDo:`, id, method, attr, $event)
 
   if (method === 'flip') {
-    StuffToDo.value = StuffToDo.value.map(e=> { 
+    data.value = data.value.map(e=> { 
       if (e.$id===id) {
         e.done = !e.done;
       }
@@ -23,11 +20,11 @@ function UpdateToDo(id, method, attr, $event) {
 
 function CreateToDo() {
   console.log('CreateToDo:', InputArea.value.value)
-  StuffToDo.value.push({ $type: 'todo-v1', $id: `c${Date.now()}`, title: InputArea.value.value, done: false,  })
+  data.value.push({ $type: 'todo-v1', $id: `c${Date.now()}`, title: InputArea.value.value, done: false,  })
   InputArea.value.value = ''
 }
 
-provide('ToDos', StuffToDo);
+//provide('ToDos', StuffToDo);
 provide('UpdateToDo', UpdateToDo);
 </script>
 
@@ -50,7 +47,7 @@ provide('UpdateToDo', UpdateToDo);
 
   <div class="flex mb-2">
     <div>
-      <span>🔲 {{ StuffToDo.length }} • </span>
+      <span>🔲 {{ data.length }} • </span>
     </div>
     <input type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900" placeholder="Your ToDo Title" ref="InputArea">
     <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo" v-on:keyup.enter="CreateToDo">Add</button>
