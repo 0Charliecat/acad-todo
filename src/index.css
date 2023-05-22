@@ -5,4 +5,8 @@
 body {
     max-width: 700px !important;
     margin: auto;
+    background-color: #ecfdf5;
+    color: #022c22;
+    height: 100%; 
+    overflow: hidden;
 }
