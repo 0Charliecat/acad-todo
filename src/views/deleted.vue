@@ -7,7 +7,7 @@ const UpdateToDo = inject('UpdateToDo');
 <template>
     <div>
         <ul>
-            <li v-for="todo in todos" @click="UpdateToDo(todo.$id, 'flip', '', $event)" :key="todo.$id"> <code>[x]</code> <span class="line-through decoration-red-400 decoration-2"> {{ todo.title }} </span></li>
+            <li v-for="todo in todos" @click="UpdateToDo(todo.$id, 'flip', '', $event)" :key="todo.$id"> <code>[x]</code> <span class="line-through decoration-emerald-400 decoration-2"> {{ todo.title }} </span></li>
         </ul>
     </div>
 </template>
