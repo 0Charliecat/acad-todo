@@ -7,13 +7,18 @@ const UpdateToDo = inject('UpdateToDo');
 <template>
     <div>
         <ul>
-            <li v-for="todo in todos" @click="UpdateToDo(todo.$id, 'flip', '', $event)" :key="todo.$id"> <code>[ ]</code> {{ todo.title }}</li>
+            <ToDo v-for="todo in todos" :key="todo.$id" :contents="todo"></ToDo>
         </ul>
     </div>
 </template>
 
 <script>
+    import ToDo from '@/components/todo.vue'
+
     export default { 
+        components: {
+            ToDo,
+        },
         props: {
             todo: Array
         },
