@@ -1,4 +1,4 @@
-export function onRequest(context) {
+export function onRequestGet() {
     return new Response().json([
         {  $type: 'todo-v1', $id: `init${Date.now()}-1`, title: "Otestuj ma!", done: false, },
         {  $type: 'todo-v1', $id: `init${Date.now()}-2`, title: "fetch cez CF Functions", done: false, },
