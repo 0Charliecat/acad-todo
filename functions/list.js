@@ -7,7 +7,8 @@ export function onRequestGet() {
         ]
     ), {
         headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            'Access-Control-Allow-Origin': '*'
         }
     })
 }
