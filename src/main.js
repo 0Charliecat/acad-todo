@@ -12,5 +12,6 @@ app.use(VueAxios, axios)
 app.use(router)
 
 app.provide('axios', app.config.globalProperties.axios)
+app.provide('router', router)
 
 app.mount('#app')

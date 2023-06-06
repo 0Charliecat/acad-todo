@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ToDo from '../views/todo.vue'
+import Load from '../views/loading.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,6 +8,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      component: Load
+    },
+    {
+      path: '/todos',
+      name: 'todo',
       component: ToDo
     },
     {

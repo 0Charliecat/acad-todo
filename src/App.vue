@@ -2,15 +2,20 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { ref, provide, inject } from 'vue';
 const axios = inject('axios') 
+const router = inject('router')
 
 const data = ref([])
 const InputArea = ref(null)
 const InputForToDo = ref(null)
 
-axios.get(`https://acadtodo.charliecat.space/list`).then(result => {
-  console.log(result)
-  data.value = result.data
-})
+if (data.value.length === 0) {
+  axios.get(`https://acadtodo.charliecat.space/list`).then(async (result) => {
+    data.value = result.data
+    return;
+  }).then(()=>router.push('/todos', { props: { todo: data } }))
+}
+
+
 
 function UpdateToDo(id, method, attr, $event) {
   console.log(`UpdateToDo:`, id, method, attr, $event)
@@ -44,11 +49,11 @@ provide('UpdateToDo', UpdateToDo);
   <div class="mx-2 md:mx-5 mt-5">
     <header class="flex mb-2 border-b-2 border-b-emerald-400">
     <div>
-      <h1>☑️ The acad<span class="font-bold">ToDo App</span></h1>
+      <h @click="router.push('/')">☑️ The acad<span class="font-bold">ToDo App</span></h>
     </div>
     <div class="flex-auto text-right">
       <nav>
-        <RouterLink to="/">➿ Stuff To-Do</RouterLink>
+        <RouterLink to="/todos">➿ Stuff To-Do</RouterLink>
         •
         <RouterLink to="/deleted">✔ Stuff Done</RouterLink>
 
