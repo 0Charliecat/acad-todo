@@ -13,6 +13,8 @@ if (data.value.length === 0) {
     data.value = result.data
     return;
   }).then(()=>router.push('/todos', { props: { todo: data } }))
+} else {
+  router.push('/todos', { props: { todo: data } })
 }
 
 
@@ -49,7 +51,7 @@ provide('UpdateToDo', UpdateToDo);
   <div class="mx-2 md:mx-5 mt-5">
     <header class="flex mb-2 border-b-2 border-b-emerald-400">
     <div>
-      <h @click="router.push('/')">☑️ The acad<span class="font-bold">ToDo App</span></h>
+      <h @click="router.push('/todos')">☑️ The acad<span class="font-bold">ToDo App</span></h>
     </div>
     <div class="flex-auto text-right">
       <nav>
