@@ -1,10 +1,16 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { ref, provide } from 'vue';
-import { data } from './datasharing'
+import { ref, provide, inject } from 'vue';
+const axios = inject('axios') 
 
+const data = ref([])
 const InputArea = ref(null)
 const InputForToDo = ref(null)
+
+axios.get(`https://acadtodo.charliecat.space/list`).then(result => {
+  console.log(result)
+  data.value = result.data
+})
 
 function UpdateToDo(id, method, attr, $event) {
   console.log(`UpdateToDo:`, id, method, attr, $event)
@@ -64,6 +70,8 @@ provide('UpdateToDo', UpdateToDo);
   />
   </div>
 </template>
+
+
 
 <style>
 
