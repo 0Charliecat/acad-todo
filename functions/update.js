@@ -7,3 +7,13 @@ export function onRequestPost(context) {
         }
     })
 }
+
+export function onRequestOptions(context) {
+    return new Response("POST", {
+        headers: {
+            "Content-type": "application/json",
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': "*"
+        }
+    })
+}
