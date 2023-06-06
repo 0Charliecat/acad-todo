@@ -26,10 +26,19 @@ function UpdateToDo(id, method, attr, $event) {
     data.value = data.value.map(e=> { 
       if (e.$id===id) {
         e.done = !e.done;
+        SendUpdatedToDo(e)
       }
       return e
     })
   }
+}
+
+async function SendUpdatedToDo(todo) {
+  let ServerResponse = await axios.post(`https://acadtodo.charliecat.space/update`, {
+    body: todo
+  })
+
+  return console.log(`Update ToDo: ${todo.$id}:`, todo, ` • Server Responded with:`, ServerResponse.data)
 }
 
 function CreateToDo() {
