@@ -54,9 +54,10 @@ function CancelToDoCreation() {
 
 async function Exchange() {
   let ServerResponse = await axios.post(`https://acadtodo.charliecat.space/exchange`, {
-    body: todo
+    body: data.value
   })
   if (Array.isArray(ServerResponse.data)) data.value = ServerResponse.data
+  console.log("Data exchange with the server", data.value)
   return data.value
 }
 
