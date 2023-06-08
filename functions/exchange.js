@@ -1,9 +1,9 @@
 export function onRequestPost(context) {
-    let body = context.body
-    if (!Array.isArray(context.body)) body = []
+    let body = context.request.body
+    if (!Array.isArray(body)) body = []
     return new Response(JSON.stringify(
         [
-            {  $type: 'todo-v1', $id: `init${Date.now()}-2`, title: "exchanged some todos", done: false, },
+            {  $type: 'todo-v1', $id: `exch${Date.now()}`, title: "exchanged some todos", done: false, },
           ...body
         ]
     ), {
