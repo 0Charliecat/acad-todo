@@ -1,5 +1,5 @@
 export function onRequestPost(context) {
-    let body = context.request.body
+    let body = context.request.body.body
     if (!Array.isArray(body)) body = []
     return new Response(JSON.stringify(
         [
