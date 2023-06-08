@@ -87,7 +87,7 @@ provide('UpdateToDo', UpdateToDo);
     </div>
     <input v-model="InputForToDo" type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900" placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo" @keyup.esc="CancelToDoCreation">
     <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
-    <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange"></button>
+    <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange().then(()=>{})"></button>
   </div>
 
   <RouterView 
