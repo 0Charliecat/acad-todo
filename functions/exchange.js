@@ -8,6 +8,7 @@ export function onRequestOptions() {
 
 export async function onRequestPost(context) {
     let body = await context.request.json();
+    console.log(body)
     if (!Array.isArray(body)) body = []
     return new Response(JSON.stringify(
         [
