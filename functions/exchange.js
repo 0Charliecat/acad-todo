@@ -1,3 +1,11 @@
+export function onRequestOptions() {
+    return new Response('POST', {
+        headers: {
+            'Access-Control-Allow-Origin': '*'
+        }
+    })
+}
+
 export async function onRequestPost(context) {
     let body = await context.request.json();
     if (!Array.isArray(body)) body = []
