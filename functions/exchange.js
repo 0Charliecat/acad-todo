@@ -1,5 +1,5 @@
-export function onRequestPost(context) {
-    let body = JSON.parse(context.request.body).body
+export async function onRequestPost(context) {
+    let body = await context.request.json();
     if (!Array.isArray(body)) body = []
     return new Response(JSON.stringify(
         [
