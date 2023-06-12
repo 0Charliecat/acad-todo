@@ -63,7 +63,12 @@ async function Exchange() {
   let ServerResponse = await axios.post(`https://acadtodo.charliecat.space/exchange`, {
     body: data.value
   })
-  if (Array.isArray(ServerResponse.data)) data.value = ServerResponse.data
+  if (Array.isArray(ServerResponse.data)) {
+    data.value.filter(()=>false)
+    for (todo in ServerResponse.data) {
+      data.value.push(todo)
+    }
+  }
   console.log("Data exchange with the server", data.value)
   return data.value
 }
