@@ -1,5 +1,5 @@
 <script setup>
-import { inject } from 'vue';
+import { inject, ref } from 'vue';
 
 const UpdateToDo = inject('UpdateToDo');
 </script>
@@ -23,7 +23,7 @@ const UpdateToDo = inject('UpdateToDo');
             todo: Array
         },
         data() {
-            return { data: this.todo }
+            return { data: ref(this.todo) }
         },
         computed: {
             todos() {

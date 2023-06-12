@@ -46,7 +46,7 @@ function CreateToDo() {
   console.log('CreateToDo:', InputForToDo.value)
   let todo = { $type: 'todo-v1', $id: `c${Date.now()}`, title: InputForToDo.value, done: false,  }
   data.value.push( todo )
-  InputForToDo.value = ''
+  InputForToDo.value = '';
 
   (async () => {
     let ServerResponse = await axios.post(`https://acadtodo.charliecat.space/update`, {
