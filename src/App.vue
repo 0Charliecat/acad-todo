@@ -44,8 +44,15 @@ async function SendUpdatedToDo(todo) {
 function CreateToDo() {
   if (InputForToDo.value === null || InputForToDo.value.length === 0) return;
   console.log('CreateToDo:', InputForToDo.value)
-  data.value.push({ $type: 'todo-v1', $id: `c${Date.now()}`, title: InputForToDo.value, done: false,  })
+  let todo = { $type: 'todo-v1', $id: `c${Date.now()}`, title: InputForToDo.value, done: false,  }
+  data.value.push( todo )
   InputForToDo.value = ''
+
+  (async () => {
+    let ServerResponse = await axios.post(`https://acadtodo.charliecat.space/update`, {
+      body: todo
+    })
+  })()
 }
 
 function CancelToDoCreation() {
