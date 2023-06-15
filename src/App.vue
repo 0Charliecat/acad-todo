@@ -10,7 +10,9 @@ const InputForToDo = ref(null)
 
 if (data.value.length === 0) {
   axios.get(`https://acadtodo.charliecat.space/list`).then(async (result) => {
-    data.value = result.data
+    result.data.forEach(e=> {
+      data.value.push(e)
+    })
     return;
   }).then(()=>router.push('/todos', { props: { todo: data } }))
 } else {
@@ -65,7 +67,9 @@ async function Exchange() {
   })
   if (Array.isArray(ServerResponse.data)) {
     data.value.length = 0
-    data.value.concat(ServerResponse.data)
+    ServerResponse.data.forEach(e=> {
+      data.value.push(e)
+    })
   }
   console.log("Data exchange with the server", data.value)
   return data.value
