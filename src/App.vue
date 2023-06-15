@@ -64,10 +64,8 @@ async function Exchange() {
     body: data.value
   })
   if (Array.isArray(ServerResponse.data)) {
-    data.value.filter(()=>false)
-    for (todo in ServerResponse.data) {
-      data.value.push(todo)
-    }
+    data.value.length = 0
+    data.value.concat(ServerResponse.data)
   }
   console.log("Data exchange with the server", data.value)
   return data.value
