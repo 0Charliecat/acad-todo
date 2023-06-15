@@ -1,7 +1,8 @@
 export function onRequestOptions() {
     return new Response('POST', {
         headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': "*"
         }
     })
 }
@@ -18,7 +19,8 @@ export async function onRequestPost(context) {
     ), {
         headers: {
             "Content-type": "application/json",
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': "*"
         }
     })
 }
