@@ -9,13 +9,10 @@ export function onRequestOptions() {
 
 export async function onRequestPost(context) {
     let body = await context.request.json();
-    console.log(body)
-    if (!Array.isArray(body)) body = []
+    if (!Array.isArray(body.body)) body = {body:[]}
+    body.body.push({  $type: 'todo-v1', $id: `exch${Date.now()}`, title: "exchanged some todos", done: false, })
     return new Response(JSON.stringify(
-        [
-            {  $type: 'todo-v1', $id: `exch${Date.now()}`, title: "exchanged some todos", done: false, },
-          ...body
-        ]
+        body.body
     ), {
         headers: {
             "Content-type": "application/json",
