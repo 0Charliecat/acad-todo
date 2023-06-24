@@ -17,7 +17,7 @@ export default createStore({
           state.todos = state.todos.map(e=> { 
               if (e.$id===id) {
                 e.done = !e.done;
-                SendUpdatedToDo(e)
+                //SendUpdatedToDo(e)
               }
               return e
           })

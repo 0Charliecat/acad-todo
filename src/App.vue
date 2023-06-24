@@ -52,7 +52,9 @@
 </template>
 
 <script>
-import { inject } from 'vue'
+  import {
+    inject
+  } from 'vue'
   export default {
     computed: {
       count() {
@@ -62,22 +64,23 @@ import { inject } from 'vue'
     data() {
       console.log(this)
       return {
-        data: this.$store.state.todos
+        data: this.$store.state.todos,
+        InputForToDo: ''
       }
     },
     methods: {
       CreateToDo(data) {
         console.log(data)
-        if (InputForToDo.value === null || InputForToDo.value.length === 0) return;
-        console.log('CreateToDo:', InputForToDo.value)
+        if (this.InputForToDo === null || this.InputForToDo.length === 0) return;
+        console.log('CreateToDo:', this.InputForToDo)
         let todo = {
           $type: 'todo-v1',
           $id: `c${Date.now()}`,
-          title: InputForToDo.value,
+          title: this.InputForToDo,
           done: false,
         }
         this.$store.commit("put", todo)
-        InputForToDo.value = '';
+        this.InputForToDo = '';
 
         (async () => {
           let ServerResponse = await this.axios.post(`https://acadtodo.charliecat.space/update`, {
@@ -88,15 +91,17 @@ import { inject } from 'vue'
       CancelToDoCreation() {
         InputForToDo.value = ""
       },
-      Exchange: async () => {
-        let ServerResponse = await this.axios.post(`https://acadtodo.charliecat.space/exchange`, {
+      Exchange() {
+        this.axios.post(`https://acadtodo.charliecat.space/exchange`, {
           body: this.data
+        }).then(ServerResponse => {
+          if (Array.isArray(ServerResponse.data)) {
+            this.$store.commit("populate", ServerResponse.data)
+          }
+          console.log("Data exchange with the server", ServerResponse.data)
         })
-        if (Array.isArray(ServerResponse.data)) {
-          this.$store.commit("populate", ServerResponse.data)
-        }
-        console.log("Data exchange with the server", ServerResponse.data)
-        return ServerResponse.data
+
+        return;
       }
     },
     mounted() {
@@ -105,8 +110,10 @@ import { inject } from 'vue'
         this.axios.get(`https://acadtodo.charliecat.space/list`).then(async (result) => {
           this.$store.commit("populate", result.data)
           return;
-        }).then(() => {router.push('/todos')})
-        
+        }).then(() => {
+          router.push('/todos')
+        })
+
       }
     },
     inject: ['router']
