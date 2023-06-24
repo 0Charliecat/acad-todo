@@ -1,5 +1,5 @@
 <template>
-    <li v-bind:class="todoStyle[1]" @click="UpdateToDo(data.$id, 'flip', '', $event)">
+    <li v-bind:class="todoStyle[1]" @click="flip(data.$id)">
         <code>[{{todoStyle[0]}}]</code> {{ data.title }}
     </li>
 </template>
@@ -12,6 +12,13 @@
         data() {
             return { data: this.contents, parent: this.parent }
         },
+
+        methods: {
+            flip(id) {
+                this.$store.commit('flip', id)
+            }
+        },
+
         computed: {
 
             todoStyle() {

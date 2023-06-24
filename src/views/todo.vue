@@ -1,9 +1,3 @@
-<script setup>
-import { inject, ref } from 'vue';
-
-const UpdateToDo = inject('UpdateToDo');
-</script>
-
 <template>
     <div>
         <ul>
@@ -19,17 +13,10 @@ const UpdateToDo = inject('UpdateToDo');
         components: {
             ToDo,
         },
-        props: {
-            todo: Array
-        },
-        data() {
-            return { data: ref(this.todo) }
-        },
         computed: {
             todos() {
-                return this.data.filter(e=>!e.done);
+                return this.$store.getters.undone;
             },
         },
-        inject: ["UpdateToDo"]
     }
 </script>

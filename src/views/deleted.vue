@@ -18,15 +18,9 @@ import { inject } from 'vue';
         components: {
             ToDo,
         },
-        props: {
-            todo: Array
-        },
-        data() {
-            return { data: this.todo }
-        },
         computed: {
             todos() {
-                return this.data.filter(e=>e.done);
+                return this.$store.getters.done;
             },
         },
         inject: ["UpdateToDo"]
