@@ -40,7 +40,7 @@ export default createStore({
           return getters.undone.length
       },
       count (state) {
-          return state.todos
+          return state.todos.length
       },
       
     }

@@ -39,12 +39,12 @@
 
     <div class="flex mb-2">
       <div>
-        <span>🔲 {{ data.length }} • </span>
+        <span>{{ [ `⭕️ ${countUndone}`, `❌ ${countDone}`, `🔲 ${count}`, ].join(' • ') }}</span>
       </div>
       <input v-model="InputForToDo" type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900"
         placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo" @keyup.esc="CancelToDoCreation">
       <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
-      <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange().then(()=>{})">🔄</button>
+      <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange()">🔄</button>
     </div>
 
     <RouterView />
@@ -59,6 +59,13 @@
     computed: {
       count() {
         return this.$store.getters.count
+      },
+
+      countDone() {
+        return this.$store.getters.doneCount
+      },
+      countUndone() {
+        return this.$store.getters.undoneCount
       },
     },
     data() {
@@ -107,11 +114,9 @@
     mounted() {
       const router = inject('router')
       if (this.data.length === 0) {
-        this.axios.get(`https://acadtodo.charliecat.space/list`).then(async (result) => {
+        this.axios.get(`https://acadtodo.charliecat.space/list`).then((result) => {
           this.$store.commit("populate", result.data)
           return;
-        }).then(() => {
-          router.push('/todos')
         })
 
       }
