@@ -1,7 +1,16 @@
+<script setup>
+  import {
+    RouterLink
+  } from 'vue-router'
+</script>
+
 <template>
-    <li v-bind:class="todoStyle[1]" @click="flip(data.$id)">
-        <code>[{{todoStyle[0]}}]</code> {{ data.title }}
-    </li>
+    <li v-bind:class="todoStyle[1]">
+        <span @click="flip(data.$id)"> <code>[{{todoStyle[0]}}]</code> {{ data.title }} </span>
+        <router-link :to="`/edit?id=${data.$id}`">
+            <button class="px-2" > ✏️ </button>
+        </router-link>
+    </li> 
 </template>
 
 <script>

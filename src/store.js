@@ -42,6 +42,11 @@ export default createStore({
       count (state) {
           return state.todos.length
       },
-      
+      objected (state) {
+        return state.todos.reduce((a, v) => {
+          a[v.$id] = v
+          return a;
+        }, {})
+      },
     }
 })
