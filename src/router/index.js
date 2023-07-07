@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ToDo from '../views/todo.vue'
 import Load from '../views/loading.vue'
+import Edit from '../views/editTodo.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +26,7 @@ const router = createRouter({
     },
     {
       path: '/edit',
-      component: () => import('../views/editTodo.vue'),
+      component: Edit,
       props: route => ({ id: route.query.id })
     }
   ],
