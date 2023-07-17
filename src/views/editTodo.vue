@@ -1,8 +1,9 @@
 <template>
-
-    <label for="">What to do?</label>
-    <input type="text" v-model="rqst.title" @input="onTextChange" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900"> <br>
-    <button onclick="history.back()">Go Back</button>
+    <div class="flex mb-2 pt-2 border-t-2 border-t-emerald-400">
+        <label for="">What to do?</label>
+        <input type="text" v-model="rqst.title" @input="onTextChange" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900">
+    </div>
+    <button onclick="history.back()" class="bg-emerald-100 px-2 rounded-full">Go Back</button>
 
 </template>
 
