@@ -6,7 +6,7 @@ import { inject } from 'vue';
 <template>
     <div>
         <ul>
-            <ToDo v-for="todo in todos" :key="todo.$id" :contents="todo"></ToDo>
+            <ToDo v-for="todo in todos" :key="todo.$id" :contents="todo" @flip="flipATodo"></ToDo>
         </ul>
     </div>
 </template>
@@ -23,6 +23,10 @@ import { inject } from 'vue';
                 return this.$store.getters.done;
             },
         },
-        inject: ["UpdateToDo"]
+        methods: {
+            flipATodo(id) {
+                this.$store.commit('flip', id)
+            }
+        },
     }
 </script>

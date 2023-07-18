@@ -22,9 +22,15 @@
             return { data: this.contents, parent: this.parent }
         },
 
+        emits: {
+            flip: (id) => {
+                return true;
+            },
+        }, 
+
         methods: {
             flip(id) {
-                this.$store.commit('flip', id)
+                this.$emit("flip", id)
             }
         },
 

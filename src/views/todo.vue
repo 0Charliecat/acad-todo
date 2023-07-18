@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <ToDo v-for="todo in todos" :key="todo.$id" :contents="todo"></ToDo>
+            <ToDo v-for="todo in todos" :key="todo.$id" :contents="todo" @flip="flipATodo"></ToDo>
         </ul>
     </div>
 </template>
@@ -17,6 +17,11 @@
             todos() {
                 return this.$store.getters.undone;
             },
+        },
+        methods: {
+            flipATodo(id) {
+                this.$store.commit('flip', id)
+            }
         },
     }
 </script>
