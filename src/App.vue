@@ -1,17 +1,5 @@
 <script setup>
-  import {
-    RouterLink,
-    RouterView
-  } from 'vue-router'
-  import {
-    ref,
-    provide,
-    inject
-  } from 'vue';
   const router = inject('router')
-
-  /*const InputArea = ref(null)
-  const InputForToDo = ref(null)*/
 </script>
 
 <template>
@@ -47,11 +35,17 @@
   import {
     inject
   } from 'vue'
+  import {
+    RouterLink,
+    RouterView
+  } from 'vue-router'
   import Inputier from "./components/inputier.vue"
 
   export default {
     components: {
-      Inputier
+      Inputier,
+      RouterLink,
+      RouterView
     },
     computed: {
       count() {
