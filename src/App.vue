@@ -25,7 +25,7 @@
       </div>
     </header>
 
-    <Inputier @exchange="Exchange" @create="CreateToDo" ></Inputier>
+    <Inputier v-on:exchange="Exchange" v-on:create-todo="CreateToDo" ></Inputier> 
 
     <RouterView />
   </div>
@@ -40,6 +40,7 @@
     RouterView
   } from 'vue-router'
   import Inputier from "./components/inputier.vue"
+  console.log(Inputier)
 
   export default {
     components: {
@@ -63,17 +64,18 @@
       console.log(this)
       return {
         data: this.$store.state.todos,
-        InputForToDo: ''
       }
     },
     methods: {
       CreateToDo(data) {
+        console.log(data)
+        console.log(this.$store) // ... this says that `this.$store.commit` is a func ... 
+        // > TypeError: this.$store.commit is not a function. (In 'this.$store.commit("put", data)', 'this.$store.commit' is undefined)
         this.$store.commit("put", data)
-        this.InputForToDo = '';
 
         (async () => {
           let ServerResponse = await this.axios.post(`https://acadtodo.charliecat.space/update`, {
-            body: todo
+            body: data
           })
         })()
       },

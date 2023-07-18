@@ -1,21 +1,64 @@
+<script setup>
+    import {
+        ref
+    } from 'vue'
+    const emit = defineEmits(["exchangeTodo", "createTodo"])
+
+    const inp = ref("")
+
+    function emiting(e, r) {
+        return emit(e, r)
+    }
+
+    function CancelToDoCreation() {
+        inp.value = ""
+    }
+
+    function CreateToDo() {
+        emiting("createTodo", {
+            $type: 'todo-v1',
+            $id: `c${Date.now()}`,
+            title: inp.value,
+            done: false,
+        })
+        inp.value = ""
+    }
+
+    function Exchange() {
+        emiting("exchangeTodo")
+    }
+</script>
+
 <template>
     <div class="flex mb-2">
         <div>
-          <span>{{ [ `⭕️ ${countUndone}`, `❌ ${countDone}`, `🔲 ${count}`, ].join(' • ') }}</span>
+            <span>{{ [ `⭕️ ${countUndone}`, `❌ ${countDone}`, `🔲 ${count}`, ].join(' • ') }}</span>
         </div>
         <input v-model="inp" type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900"
-          placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo" @keyup.esc="CancelToDoCreation">
+            placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo"
+            @keyup.esc="CancelToDoCreation">
         <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
         <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange()">🔄</button>
     </div>
 </template>
 
 <script>
-
+    import {
+        ref,
+        reactive,
+        computed
+    } from 'vue'
     export default {
         name: "Inputier",
-        data: {
-            inp: "" // used in the text input element
+        setup(props,
+        context) { // for some reason https://stackoverflow.com/questions/64105088/vue-3-composition-api-data-function
+
+            // used in the text input element
+            const InputArea = ref(null) // ref for the text input element
+            return {
+                inp,
+                InputArea
+            }
         },
         computed: {
             count() {
@@ -29,36 +72,8 @@
             },
         },
         methods: {
-            CancelToDoCreation: () => {
-                this.inp = ""
-            },
-            CreateToDo: () => {
-                this.$emit("create", {
-                    $type: 'todo-v1',
-                    $id: `c${Date.now()}`,
-                    title: this.inp,
-                    done: false,
-                })
-            },
-            Exchange: () => {
-                this.$emit("exchange")
-            }
+
         },
-        emits: {
-            exchange: () => {return true;},
-            create: (data) => {
-                const isTypeCorrect  = Boolean( data.$type === "todo-v1"        )
-                const isIdAString    = Boolean( typeof(data.$id) === "string"   )
-                const isTitleAString = Boolean( typeof(data.title) === "string" )
-                const isDoneABoolean = Boolean( typeof(data.done) === "boolean" )
-
-                if (isTypeCorrect && isIdAString && isTitleAString && isDoneABoolean) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+        emits: ["exchangeTodo", "createTodo"]
     }
-
 </script>
