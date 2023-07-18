@@ -17,6 +17,17 @@
         data: {
             inp: "" // used in the text input element
         },
+        computed: {
+            count() {
+                return this.$store.getters.count;
+            },
+            countDone() {
+                return this.$store.getters.doneCount;
+            },
+            countUndone() {
+                return this.$store.getters.undoneCount;
+            },
+        },
         methods: {
             CancelToDoCreation: () => {
                 this.inp = ""
