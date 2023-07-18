@@ -74,16 +74,7 @@
     },
     methods: {
       CreateToDo(data) {
-        console.log(data)
-        if (this.InputForToDo === null || this.InputForToDo.length === 0) return;
-        console.log('CreateToDo:', this.InputForToDo)
-        let todo = {
-          $type: 'todo-v1',
-          $id: `c${Date.now()}`,
-          title: this.InputForToDo,
-          done: false,
-        }
-        this.$store.commit("put", todo)
+        this.$store.commit("put", data)
         this.InputForToDo = '';
 
         (async () => {
