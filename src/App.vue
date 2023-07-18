@@ -47,7 +47,7 @@
   import {
     inject
   } from 'vue'
-  import Inputier from "./components/inputier"
+  import Inputier from "./components/inputier.vue"
 
   export default {
     components: {
