@@ -37,15 +37,7 @@
       </div>
     </header>
 
-    <div class="flex mb-2">
-      <div>
-        <span>{{ [ `⭕️ ${countUndone}`, `❌ ${countDone}`, `🔲 ${count}`, ].join(' • ') }}</span>
-      </div>
-      <input v-model="InputForToDo" type="text" class="bg-emerald-100 mx-2 px-2 flex-auto rounded-full text-emerald-900"
-        placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo" @keyup.esc="CancelToDoCreation">
-      <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
-      <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange()">🔄</button>
-    </div>
+    <Inputier @exchange="Exchange" @create="CreateToDo" ></Inputier>
 
     <RouterView />
   </div>
@@ -55,7 +47,12 @@
   import {
     inject
   } from 'vue'
+  import Inputier from "./components"
+
   export default {
+    components: {
+      Inputier
+    },
     computed: {
       count() {
         return this.$store.getters.count
