@@ -40,7 +40,6 @@
     RouterView
   } from 'vue-router'
   import Inputier from "./components/inputier.vue"
-  console.log(Inputier)
 
   export default {
     components: {
