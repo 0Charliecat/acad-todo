@@ -1,7 +1,3 @@
-<script setup>
-  const router = inject('router')
-</script>
-
 <template>
   <div class="mx-2 md:mx-5 mt-5">
     <header class="flex mb-2 border-b-2 border-b-emerald-400">
@@ -25,7 +21,7 @@
       </div>
     </header>
 
-    <Inputier v-on:exchange="Exchange" v-on:create-todo="CreateToDo" ></Inputier> 
+    <Inputier v-on:exchange-todo="Exchange" v-on:create-todo="CreateToDo" ></Inputier> 
 
     <RouterView />
   </div>
@@ -95,7 +91,6 @@
       }
     },
     mounted() {
-      const router = inject('router')
       if (this.data.length === 0) {
         this.axios.get(`https://acadtodo.charliecat.space/list`).then((result) => {
           this.$store.commit("populate", result.data)

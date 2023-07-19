@@ -45,21 +45,11 @@
 
 <script>
     import {
-        ref,
-        reactive,
-        computed
+        ref
     } from 'vue'
     export default {
         name: "Inputier",
-        setup(props,
-        context) { // for some reason https://stackoverflow.com/questions/64105088/vue-3-composition-api-data-function
-
-            // used in the text input element
-            const InputArea = ref(null) // ref for the text input element
-            return {
-                inp,
-                InputArea
-            }
+        setup(props, context) { // for some reason https://stackoverflow.com/questions/64105088/vue-3-composition-api-data-function
         },
         computed: {
             count() {
