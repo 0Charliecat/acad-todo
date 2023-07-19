@@ -15,6 +15,7 @@
     }
 
     function CreateToDo() {
+        if (inp.value.length === 0) return null;
         emiting("createTodo", {
             $type: 'todo-v1',
             $id: `c${Date.now()}`,
