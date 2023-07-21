@@ -64,9 +64,8 @@
     methods: {
       CreateToDo(data) {
         console.log(data)
-        console.log(this.$store) // ... this says that `this.$store.commit` is a func ... 
-        // > TypeError: this.$store.commit is not a function. (In 'this.$store.commit("put", data)', 'this.$store.commit' is undefined)
-        this.$store.commit("put", data)
+        console.log(this.$store) 
+        this.$store.commit("put", data);
 
         (async () => {
           let ServerResponse = await this.axios.post(`https://acadtodo.charliecat.space/update`, {
