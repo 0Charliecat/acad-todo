@@ -19,7 +19,7 @@
             contents: Object,
         },
         data() {
-            return { data: this.contents, parent: this.parent }
+            return { data: this.contents }
         },
 
         emits: {
