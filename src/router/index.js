@@ -12,11 +12,6 @@ const router = createRouter({
       component: ToDo
     },
     {
-      path: '/todos',
-      name: 'todo',
-      component: ToDo
-    },
-    {
       path: '/deleted',
       name: 'deleted',
       // route level code-splitting
