@@ -1,8 +1,3 @@
-<script setup>
-import { inject } from 'vue';
-
-</script>
-
 <template>
     <div>
         <ul>

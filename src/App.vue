@@ -29,9 +29,6 @@
 
 <script>
   import {
-    inject
-  } from 'vue'
-  import {
     RouterLink,
     RouterView
   } from 'vue-router'
@@ -72,9 +69,6 @@
             body: data
           })
         })()
-      },
-      CancelToDoCreation() {
-        InputForToDo.value = ""
       },
       Exchange() {
         this.axios.post(`https://acadtodo.charliecat.space/exchange`, {
@@ -119,5 +113,9 @@
 
   .active::after {
     content: ']'
+  }
+
+  a.link::after {
+    content: " ↗️"
   }
 </style>

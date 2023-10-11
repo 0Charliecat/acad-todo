@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ToDo from '../views/todo.vue'
-import Load from '../views/loading.vue'
 import Edit from '../views/editTodo.vue'
+import NotFound from '../views/NotFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,6 +9,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
+      redirect: "/todos"
+    },
+    {
+      path: "/todos",
+      name: 'todos',
       component: ToDo
     },
     {
@@ -23,7 +28,8 @@ const router = createRouter({
       path: '/edit',
       component: Edit,
       props: route => ({ id: route.query.id })
-    }
+    },
+    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
   linkActiveClass: "active",
 })

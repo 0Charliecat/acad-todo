@@ -1,35 +1,3 @@
-<script setup>
-    import {
-        ref
-    } from 'vue'
-    const emit = defineEmits(["exchangeTodo", "createTodo"])
-
-    const inp = ref("")
-
-    function emiting(e, r) {
-        return emit(e, r)
-    }
-
-    function CancelToDoCreation() {
-        inp.value = ""
-    }
-
-    function CreateToDo() {
-        if (inp.value.length === 0) return null;
-        emiting("createTodo", {
-            $type: 'todo-v1',
-            $id: `c${Date.now()}`,
-            title: inp.value,
-            done: false,
-        })
-        inp.value = ""
-    }
-
-    function Exchange() {
-        emiting("exchangeTodo")
-    }
-</script>
-
 <template>
     <div class="flex mb-2">
         <div>
@@ -39,17 +7,38 @@
             placeholder="Whatcha' wanna do next?" ref="InputArea" @keyup.enter="CreateToDo"
             @keyup.esc="CancelToDoCreation">
         <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="CreateToDo">Add</button>
-        <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange()">🔄</button>
+        <button class="bg-emerald-100 px-2 rounded-full text-emerald-900" @click="Exchange">🔄</button>
     </div>
 </template>
 
 <script>
-    import {
-        ref
-    } from 'vue'
+
     export default {
         name: "Inputier",
-        setup(props, context) { // for some reason https://stackoverflow.com/questions/64105088/vue-3-composition-api-data-function
+        emits: ["exchangeTodo", "createTodo"],
+        methods: {
+            CreateToDo() {
+                if (this.inp.value.length === 0) return null;
+                this.$emit("createTodo", {
+                    $type: 'todo-v1',
+                    $id: `c${Date.now()}`,
+                    title: this.inp.value,
+                    done: false,
+                });
+                this.inp.value = "";
+            },
+            Exchange() {
+                this.$emit("exchangeTodo")
+            },
+            CancelToDoCreation() {
+                this.inp.value = "";
+            }
+
+        },
+        data() {
+            return {
+                inp: null
+            }
         },
         computed: {
             count() {
@@ -62,9 +51,5 @@
                 return this.$store.getters.undoneCount;
             },
         },
-        methods: {
-
-        },
-        emits: ["exchangeTodo", "createTodo"]
-    }
+    };
 </script>

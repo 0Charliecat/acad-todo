@@ -1,9 +1,3 @@
-<script setup>
-  import {
-    RouterLink
-  } from 'vue-router'
-</script>
-
 <template>
     <li v-bind:class="todoStyle[1]">
         <span @click="flip(data.$id)"> <code>[{{todoStyle[0]}}]</code> {{ data.title }} </span>
@@ -14,7 +8,13 @@
 </template>
 
 <script>
+  import {
+    RouterLink
+  } from 'vue-router'
     export default { 
+        components: {
+            RouterLink
+        },
         props: {
             contents: Object,
         },
